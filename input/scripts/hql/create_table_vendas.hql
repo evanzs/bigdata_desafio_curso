@@ -12,20 +12,20 @@ CREATE EXTERNAL TABLE IF NOT EXISTS ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL} 
         List_Price string,
         Order_Number string,
         Promised_Delivery_Date string,
-        Sales_Amount_string,
+        Sales_Amount string,
         Sales_Amount_Based_on_List_Price string,
         Sales_Cost_Amount string,
         Sales_Margin_Amount string,
         Sales_Price string,
         Sales_Quantity string,
         Sales_Rep string,
-        U/M string
+        UM string
     )
 COMMENT 'Tabela de Vendas'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 STORED AS TEXTFILE
-location '${HDFS_DIR}'
+location '${DFS_DIR}'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
 
@@ -43,14 +43,14 @@ Line_Number string,
 List_Price string,
 Order_Number string,
 Promised_Delivery_Date string,
-Sales_Amount_string,
+Sales_Amount string,
 Sales_Amount_Based_on_List_Price string,
 Sales_Cost_Amount string,
 Sales_Margin_Amount string,
 Sales_Price string,
 Sales_Quantity string,
 Sales_Rep string,
-U/M string
+UM string
 )
 PARTITIONED BY (DT_FOTO STRING)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde' 
@@ -79,14 +79,14 @@ SELECT
     List_Price string,
     Order_Number string,
     Promised_Delivery_Date string,
-    Sales_Amount_string,
+    Sales_Amount string,
     Sales_Amount_Based_on_List_Price string,
     Sales_Cost_Amount string,
     Sales_Margin_Amount string,
     Sales_Price string,
     Sales_Quantity string,
     Sales_Rep string,
-    U/M string,
-	${PARTICAO} as DT_FOTO
-FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL}
-;
+    UM string,
+	    ${PARTICAO} as DT_FOTO
+FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL};
+
