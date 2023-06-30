@@ -13,7 +13,7 @@ COMMENT 'Tabela de Endereco'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 STORED AS TEXTFILE
-location '${HDFS_DIR}'
+location '${DFS_DIR}'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
 
@@ -51,6 +51,6 @@ SELECT
     Customer_Address_4 string,
     State string,
     Zip_Code string,
-	${PARTICAO} as DT_FOTO
-FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL}
-;
+	    ${PARTICAO} as DT_FOTO
+FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL};
+
