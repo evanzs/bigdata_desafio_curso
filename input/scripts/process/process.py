@@ -1,12 +1,13 @@
-# from pyspark.sql import SparkSession, dataframe
-# from pyspark.sql.types import StructType, StructField
-# from pyspark.sql.types import DoubleType, IntegerType, StringType
-# from pyspark.sql import HiveContext
-# from pyspark.sql.functions import *
-# from pyspark.sql import functions as f
+from pyspark.sql import SparkSession, dataframe
+from pyspark.sql.types import StructType, StructField
+from pyspark.sql.types import DoubleType, IntegerType, StringType
+from pyspark.sql import HiveContext
+from pyspark.sql.functions import *
+from pyspark.sql import functions as f
 import subprocess
 import os
 import re
+
 
 
 
@@ -14,23 +15,29 @@ import re
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Caminho para o diretório pre_process
-pre_process_dir = os.path.join(current_dir, '..', 'pre_process')
+pre_process_dir = os.path.join(current_dir, '..', 'pre_process') 
+
+#funcao para executar scripts .sh
+def executar_script(script_path):
+    # Define permissões de execução para o arquivo
+    subprocess.run(['chmod', '+x', script_path], check=True)
+    # Executa o arquivo
+    subprocess.run(['bash', script_path])
+
 
 script_path = pre_process_dir + "/create_env_all.sh"
-# Define permissões de execução para o arquivo
-subprocess.run(['chmod', '+x',script_path], check=True)
-# Executa o arquivo create_env_all.sh
-subprocess.run(['bash', script_path])
+
+#script_path = pre_process_dir + "/carga_tabelas.sh"
 
 
+##executar_script(script_path)
 
+spark = SparkSession.builder.master("local[*]")\
+    .enableHiveSupport()\
+    .getOrCreate()
 
-# spark = SparkSession.builder.master("local[*]")\
-#     .enableHiveSupport()\
-#     .getOrCreate()
-
-# # Criando dataframes diretamente do Hive
-# df_clientes = spark.sql("SELECT * FROM DESAFIO_CURSO.TBL_CLIENTES")
+# Criando dataframes diretamente do Hive
+df_clientes = spark.sql("SELECT * FROM DESAFIO_CURSO.TBL_CLIENTES")
 
 # # Espaço para tratar e juntar os campos e a criação do modelo dimensional
 
