@@ -6,7 +6,7 @@ COMMENT 'Tabela de Regiao'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 STORED AS TEXTFILE
-location '${HDFS_DIR}'
+location '${DFS_DIR}'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
 
@@ -30,6 +30,6 @@ PARTITION(DT_FOTO)
 SELECT
     Region_Code string,
     Region_Name string,
-	${PARTICAO} as DT_FOTO
-FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL}
-;
+	    ${PARTICAO} as DT_FOTO
+FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL};
+

@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS ${TARGET_DATABASE};
+USE ${TARGET_DATABASE};
+
 CREATE EXTERNAL TABLE IF NOT EXISTS ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL} ( 
         Address_Number string,
         Business_Family string,
@@ -16,7 +19,7 @@ COMMENT 'Tabela de Clientes'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 STORED AS TEXTFILE
-location '${HDFS_DIR}'
+location '${DFS_DIR}'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
 
@@ -59,7 +62,6 @@ SELECT
     Phone string,
     Region_Code string,
     Regional_Sales_Mgr string,
-    Search_Type string
-	${PARTICAO} as DT_FOTO
-FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL}
-;
+    Search_Type string,
+	    ${PARTICAO} as DT_FOTO
+FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL};
