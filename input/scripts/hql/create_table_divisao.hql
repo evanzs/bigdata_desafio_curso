@@ -6,7 +6,7 @@ COMMENT 'Tabela de Divisao'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ';'
 STORED AS TEXTFILE
-location '${HDFS_DIR}'
+location '${DFS_DIR}'
 TBLPROPERTIES ("skip.header.line.count"="1");
 
 
@@ -29,7 +29,6 @@ INSERT OVERWRITE TABLE
 PARTITION(DT_FOTO) 
 SELECT
     Division string,
-    Division_Name string
-	${PARTICAO} as DT_FOTO
-FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL}
-;
+    Division_Name string,
+	    ${PARTICAO} as DT_FOTO
+FROM ${TARGET_DATABASE}.${TARGET_TABLE_EXTERNAL};
