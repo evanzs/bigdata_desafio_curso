@@ -12,8 +12,8 @@ import json
 from typing import Dict, Tuple
 import argparse
 import pandas as pd
-
-
+import os
+import subprocess
 
 # Obtenha o diretório do script atual
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,11 +31,11 @@ def executar_script(script_path):
 
 # RODA O SCRIPT CREATE_ENV_ALL PARA CRIAR OS ARQUIVOS NO HDFS
 script_path = pre_process_dir + "/create_env_all.sh"
-#executar_script(script_path)
+executar_script(script_path)
 
 # RODA O SCRIPT CREATE_ENV_ALL PARA CRIAR AS TABELAS NO HIVE
 script_path = pre_process_dir + "/carga_tabelas.sh"
-#executar_script(script_path)
+executar_script(script_path)
 
 
 
