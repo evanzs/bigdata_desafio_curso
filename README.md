@@ -68,13 +68,19 @@ scripts -> carga_tabelas.sh - script shell para executar a os hqls e criar as ta
 
 process.py -> arquivo que conterá toda a logica para executar e rodar o projeto de uma só vez.
 
+# Execução do Projeto
+
+- para saber como rodar o projeto em sua maquina:
+- 
+[Clique aqui](README-EXECUCAO.md) para acessar o escopo.
+
+
 
 # Resultado 
 
 Ao final teremos um grafico em POWER BI 
 
-
-
+![image](https://github.com/evanzs/bigdata_desafio_curso/assets/24463238/42004460-bf18-4011-852e-95c40a23efcd)
 
 
 
